@@ -1,11 +1,11 @@
 //Holds the data for prompts for each stage. Maybe there is a better way to do this, but I am, admittedly, an idiot, so here it is in the JS iteslf.
-const prompt_1 = "Our police officers have been asking about the thief. We heard that she is planning ot go to either America or France next. However, when we got close to her apartment, she heard us coming and ran away. But, she left behind lots of things on her desk. Can you help us look for clues?";
+const prompt_1 = "Our police officers have been asking about the thief. We heard that she is planning to go to either America or France next. However, when we got close to her apartment, she heard us coming and ran away. But, she left behind lots of things on her desk. Can you help us look for clues?";
 const prompt_1_help = "I recommend searching her journal, checking her bag, and looking under the desk.";
 const loc1_journal = "The last entry in her journal says that she is looking forward to soon eating some fine cheese and bread.";
 const loc1_bag = "In her bag there is a book about judging expensive wine.";
 const loc1_desk = "I found some world travel guidebooks. She circled several passages about the Eiffel Tower.";
 const prompt_2_fail = "We're here in America looking everywhere for her. However, we can't find any trace of her and no new clues! I think you must have picked the wrong location.";
-const prompt_2 = "Good work! As soon as we called the French police, they noticed her in a café. She quickly ran away, but we heard from witnesses that she is thinking about going to either England, Mexico, or Korea next! Can you help us look for clues at the café?";
+const prompt_2 = "Good work! As soon as we called the French police, they noticed her in a cafe. She quickly ran away, but we heard from witnesses that she is thinking about going to either England, Mexico, or Korea next! Can you help us look for clues at the café?";
 const prompt_2_help = "I recommend searching her table, checking inside, and looking behind the tree.";
 const loc2_table = "It seems that she left a very expensive swimsuit that she had just bought.";
 const loc2_inside = "The waiter says that she complained because the food wasn't spicy enough. Apparently, she is looking forward to eating spicy food at her next destination.";
@@ -13,6 +13,8 @@ const loc2_tree = "Someone seems to have dropped a Spanish to English dictionary
 const prompt_3_fail_uk = "We're here in London looking everywhere for her. However, we can't find any trace of her and no new clues! I think you must have picked the wrong location.";
 const prompt_3_fail_korea = "We're here in Korea looking everywhere for her. However, we can't find any trace of her and no new clues! I think you must have picked the wrong location.";
 const prompt_3 = "Thank goodness you're here! We found the thief in her hotel room here in Cancun! She just ran away, but I think you might be able to see her! Which way do you think we should go? Please tell us what we should do!";
+const prompt_4 = "Good job! Where should we go next?"
+const prompt_5 = "We almost have her! Which room did she go into?"
 const prompt_3_help = "Use a phrasal verb with the word run to tell us which way to go! Be sure to use the word beach as well!";
 const prompt_3_help2 = "Use a phrasal verb to tell us which way to go! Be sure to use the word stairs.";
 const prompt_3_help3 = "Use a phrasal verb to tell us which room to enter! Be sure to say the name of the room!"
@@ -30,11 +32,13 @@ function StartGame(){
     document.getElementById('home').style.display="none";
     document.getElementById('Command_Center').style.display="block";
     document.getElementById('Stage1').style.display="block";
+    TTS(prompt_1);
 }
 
 //Resets everything and sends user back to initial screen
 function GameOver(){
     progress_counter = 0;
+    speechSynthesis.cancel();
     document.getElementById('home').style.display="block";
     document.getElementById('Command_Center').style.display="none";
     document.getElementById('Stage1').style.display="none";
@@ -45,6 +49,7 @@ function GameOver(){
     document.getElementById('Stage3_Mexico').style.display="none";
     document.getElementById('Stage4_2').style.display="none";
     document.getElementById('Stage4_3').style.display="none";
+    document.getElementById('fail_screen').style.display="none";
 }
 
 //Sets what to do in France
@@ -60,6 +65,7 @@ function PrepStage2() {
     document.getElementById('Stage3_Mexico').style.display="none";
     document.getElementById('Stage4_2').style.display="none";
     document.getElementById('Stage4_3').style.display="none";
+    TTS(prompt_2);
 }
 
 //Sets what to do in Mexico part 1
@@ -75,6 +81,7 @@ function PrepStage3() {
     document.getElementById('Stage3_Mexico').style.display="block";
     document.getElementById('Stage4_2').style.display="none";
     document.getElementById('Stage4_3').style.display="none";
+    TTS(prompt_3);
 }
 
 //Sets what to do in Mexico part 2
@@ -90,6 +97,7 @@ function PrepStage4() {
     document.getElementById('Stage3_Mexico').style.display="none";
     document.getElementById('Stage4_2').style.display="block";
     document.getElementById('Stage4_3').style.display="none";
+    TTS(prompt_4);
 }
 
 //Sets what to do in Mexico part 2
@@ -105,11 +113,11 @@ function PrepStage5() {
     document.getElementById('Stage3_Mexico').style.display="none";
     document.getElementById('Stage4_2').style.display="none";
     document.getElementById('Stage4_3').style.display="block";
+    TTS(prompt_5);
 }
 
 //Sets what to do in America on fail
 function PrepFailAmerica() {
-    progress_counter = 5;
     document.getElementById('home').style.display="none";
     document.getElementById('Command_Center').style.display="none";
     document.getElementById('Stage1').style.display="none";
@@ -120,7 +128,10 @@ function PrepFailAmerica() {
     document.getElementById('Stage3_Mexico').style.display="none";
     document.getElementById('Stage4_2').style.display="none";
     document.getElementById('Stage4_3').style.display="none";
+    document.getElementById('fail_screen').style.display="block";
+    TTS(prompt_2_fail);
 }
+
 
 //Sets what to do in UK on fail
 function PrepFailUK() {
@@ -128,13 +139,15 @@ function PrepFailUK() {
     document.getElementById('home').style.display="none";
     document.getElementById('Command_Center').style.display="none";
     document.getElementById('Stage1').style.display="none";
-    document.getElementById('Stage2_America').style.display="block";
+    document.getElementById('Stage2_America').style.display="none";
     document.getElementById('Stage2_France').style.display="none";
-    document.getElementById('Stage3_England').style.display="none";
-    document.getElementById('Stage3_Korea').style.display="block";
+    document.getElementById('Stage3_England').style.display="block";
+    document.getElementById('Stage3_Korea').style.display="none";
     document.getElementById('Stage3_Mexico').style.display="none";
     document.getElementById('Stage4_2').style.display="none";
     document.getElementById('Stage4_3').style.display="none";
+    document.getElementById('fail_screen').style.display="block";
+    TTS(prompt_3_fail_uk);
 }
 
 //Sets what to do in Korea on fail
@@ -150,10 +163,13 @@ function PrepFailKorea() {
     document.getElementById('Stage3_Mexico').style.display="none";
     document.getElementById('Stage4_2').style.display="none";
     document.getElementById('Stage4_3').style.display="none";
+    document.getElementById('fail_screen').style.display="block";
+    TTS(prompt_3_fail_korea);
 }
 
 //Runs TTS based on utterance, as determined by progress
 function TTS(utterance) {
+    speechSynthesis.cancel();
     let utter = new SpeechSynthesisUtterance();
     utter.lang=language_var;
     utter.text = utterance;
@@ -169,9 +185,9 @@ function ReListen(){
     } else if (progress_counter == 2) {
         utterance = prompt_3;
     } else if (progress_counter == 3) {
-        utterance = prompt_3_help2;
+        utterance = prompt_4;
     } else if (progress_counter == 4) {
-        utterance = prompt_3_help3;
+        utterance = prompt_5;
     }
     TTS(utterance);
 }
@@ -194,6 +210,7 @@ function GetHelp() {
 
 //Initializes ASR
 function SpeakNow() {
+    speechSynthesis.cancel();
     document.getElementById('speech_output').innerHTML = "(Awaiting Command)";
     window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
     recognition = new webkitSpeechRecognition();
@@ -258,7 +275,7 @@ function JudgeSpeech(result) {
         else {
             if (result.includes("Mexico")){
                 document.getElementById('speech_output').innerHTML = "Follow the thief to Mexico.";
-                PrepStage2();
+                PrepStage3();
             } else if (result.includes("England") || result.includes("the UK")){
                 document.getElementById('speech_output').innerHTML = "Follow the thief to England.";
                 PrepFailUK();
@@ -279,7 +296,7 @@ function JudgeSpeech(result) {
     if (progress_counter == 3) {
         if (result.includes("up") && result.includes("stairs") || result.includes("up") && result.includes("steps")) {
             document.getElementById('speech_output').innerHTML = "run up the stairs/steps";
-            PrepStage4();
+            PrepStage5();
         } else {
             document.getElementById('speech_output').innerHTML = "I don't understand what to do - please try again.";
         }
@@ -290,7 +307,8 @@ function JudgeSpeech(result) {
             Success();
         } else if (result.includes("living room")) {
             document.getElementById('speech_output').innerHTML = "barge into the living room";
-            Fail ();
+            alert("The thief crashed through the window and got away! Press 'ok' to start over.");
+            GameOver();
         } else {
             document.getElementById('speech_output').innerHTML = "I don't understand what to do - please try again.";
         }
@@ -307,4 +325,8 @@ function MakeCommand() {
 function MakeDecision () {
     clues = false;
     SpeakNow();
+}
+
+function ChooseLanguage() {
+    language_var = document.getElementById('select_ln').value;
 }
