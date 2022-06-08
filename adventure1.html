@@ -1,0 +1,50 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="adventure1.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="home" class="start" style="display:block">
+        <h1>Catch the Thief!</h1>
+        <h2>A speaking adventrue game!</h2>
+        <br>
+        <h3>A thief has stolen Date Masamune's armor from the Sendai Musuem! She is planning to sell it in a foreing country. The police almost caught her, but she got away!</h3>
+        <br>
+        <h2> Help the police with their investigation!</h2>
+        <br>
+        <button id="start_button" class="start_button" onclick="StartGame()">Start!</button>
+
+    </div>
+    <div id="Stage1" class="stage" style="display:none">
+        <img src="study.jpg">
+    </div>
+    <div id="Stage2_America" class="stage" style="display:none">
+        <img>
+    </div>
+    <div id="Stage2_France" class="stage" style="display:none">
+        <img>
+    </div>
+    <div id="Stage3_England" class="stage" style="display:none">
+        <img>
+    </div>
+    <div id="Stage3_Korea" class="stage" style="display:none">
+        <img>
+    </div>
+    <div id="Stage3_Mexico" class="stage" style="display:none">
+        <img>
+    </div>
+    <div id="Stage4_2" class="stage" style="display:none">
+        <img>
+    </div>
+    <div id="Stage4_3" class="stage" style="display:none">
+        <img>
+
+    <div id="Command_Center" class="command_center" style="display:none">
+        <img id="police">
+        <button id="recheck" class="cmd_button" onclick="ReListen()">Explain it Again</button>
+        <button id="help" class="cmd_button" onclick="GetHelp()">Get Advice</button>
+        <button id="command" class="cmd_button" onclick="MakeCommand()">Look for Clues</button>
+        <button id="decision" class="cmd_button" onclick="MakeDecision()">Decide Next Location</button>
+    </div>
+<script type="text/javascript" src="adventure1.js"></script>
+</body>
