@@ -36,6 +36,7 @@ function StartGame(){
 }
 
 function ResetPictures() {
+    document.getElementById('success_screen').style.display="none";
     document.getElementById('home').style.display="none";
     document.getElementById('Command_Center').style.display="none";
     document.getElementById('Stage1').style.display="none";
@@ -74,6 +75,26 @@ function PrepStage3() {
     document.getElementById('Command_Center').style.display="block";
     document.getElementById('Stage3_Mexico').style.display="block";
     TTS(prompt_3);
+    Thief1();
+}
+var moveid = null;
+function Thief1 (){
+    document.getElementById('thief').style.display="inline";
+    var movethief = document.getElementById('container2');
+    var ypos = 200;
+    var xpos = 280;
+    clearInterval(moveid);
+    moveid = setInterval(frame, 10);
+    function frame() {
+        if (ypos == 350) {
+            clearInterval(moveid);
+        } else {
+            ypos++;
+            xpos++;
+            movethief.style.bottom = ypos + 'px';
+            movethief.style.right = (xpos*0.3) + 'px';
+        }
+    }  
 }
 
 //Sets what to do in Mexico part 2
@@ -83,6 +104,26 @@ function PrepStage4() {
     document.getElementById('Command_Center').style.display="block";
     document.getElementById('Stage4_2').style.display="block";
     TTS(prompt_4);
+    Thief2();
+}
+
+function Thief2 (){
+    document.getElementById('thief2').style.display="inline";
+    var movethief2 = document.getElementById('container3');
+    var ypos = 180;
+    var xpos = 190;
+    clearInterval(moveid);
+    moveid = setInterval(frame, 10);
+    function frame() {
+        if (ypos == 380) {
+            clearInterval(moveid);
+        } else {
+            ypos++;
+            xpos++;
+            movethief2.style.bottom = (ypos*0.75) + 'px';
+            movethief2.style.left = xpos + 'px';
+        }
+    }  
 }
 
 //Sets what to do in Mexico part 2
@@ -92,6 +133,25 @@ function PrepStage5() {
     document.getElementById('Command_Center').style.display="block";
     document.getElementById('Stage4_3').style.display="block";
     TTS(prompt_5);
+    Thief3();
+}
+
+function Thief3 (){
+    document.getElementById('thief3').style.display="inline";
+    var movethief2 = document.getElementById('container4');
+    movethief2.style.top= '200px';
+    var pos = 320;
+    clearInterval(moveid);
+    moveid = setInterval(frame, 10);
+    function frame() {
+        if (pos == 600) {
+            clearInterval(moveid);
+        } else {
+            pos++;
+            movethief2.style.right = pos + 'px';
+        }
+    }
+
 }
 
 //Sets what to do in America on fail
@@ -286,4 +346,9 @@ function MakeDecision () {
 
 function ChooseLanguage() {
     language_var = document.getElementById('select_ln').value;
+}
+
+function Success(){
+    ResetPictures();
+    document.getElementById('success_screen').style.display="block";
 }

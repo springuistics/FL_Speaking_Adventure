@@ -37,19 +37,33 @@
     </div>
     <div id="Stage3_Mexico" class="stage" style="display:none">
         <h2>Mexico</h2>
-        <img src="mexico.jpg" style="margin-bottom: 20px">
+        <div class="really">
+        <div id="container1"><img src="mexico.jpg" class="M1" style="margin-bottom: 20px">
+        <div id="container2"><img id="thief" class = "thief1" src="thief.jpg" style="display:none"></div></div></div>
+        <br>
     </div>
     <div id="Stage4_2" class="stage" style="display:none">
         <h2>Follow the thief!</h2>
-        <img src="4_2.jpg" style="margin-bottom: 20px">
+        <div id="container1"><img src="4_2.jpg" style="margin-bottom: 20px">
+        <div id="container3"><img id="thief2" class = "thief1" src="thief.jpg" style="display:none"></div></div>
     </div>
     <div id="Stage4_3" class="stage" style="display:none">
         <h2>Which way did she go?</h2>
-        <img src="4_3.jpg" style="margin-bottom: 20px">
+        <div id="container1"><img src="4_3.jpg" style="margin-bottom: 20px">
+        <div id="container4"><img id="thief3" src="thief.jpg" class = "thief1" style="display:none"></div></div>
     </div>
     <div id="fail_screen" class="fail" style="display:none">
         <h1>Mission Failed!</h1>
         <button id="Start_Over" class="SO_button" onclick="GameOver()">Start Over!</button>
+    </div>
+    <div id="success_screen" class="stage" style="display:none">
+        <h1>You win!</h1>
+        <br>
+        <img src="caught.jpg" style="margin-bottom: 20px">
+        <br>
+        <h2>Congratulations on catching the thief!</h2>
+        <br>
+        <button class="SO_button" onclick="GameOver()">Play again!</button>
     </div>
     <div id="Command_Center" class="command_center" style="display:none">
         <label for="select_ln" style="color: white" >Choose Language</label>

@@ -26,7 +26,7 @@
     text-align: center;
 }
 
-.fail.SO_button {
+.fail .SO_button {
     border: 5px;
     border-color: white;
     color: white;
@@ -38,7 +38,7 @@
 }
 
 .stage {
-    margin: auto;
+    justify-content: center;
     text-align: center;
     border: 1px;
     border-color: black;
@@ -78,4 +78,42 @@
     background-color: black;
     color: white;
 
+}
+
+.stage .thief1 {
+    height: 100px;
+    width: 35px;
+}
+
+#container1 {
+    position: relative;
+    width: 640px;
+    height: 480px;
+}
+
+#container2 {
+    position: absolute;
+}
+
+#container3 {
+    position: absolute;
+}
+
+#container4 {
+    position: absolute;
+}
+
+.stage.really {
+    justify-content:center;
+}
+
+.stage .SO_button {
+    border: 5px;
+    border-color: white;
+    color: white;
+    background-color: rgb(17, 143, 0);
+    height: 30px;
+    font-size: 16px;
+    width: auto;
+    margin-top: 10px;
 }
