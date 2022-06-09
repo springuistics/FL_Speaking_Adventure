@@ -35,11 +35,8 @@ function StartGame(){
     TTS(prompt_1);
 }
 
-//Resets everything and sends user back to initial screen
-function GameOver(){
-    progress_counter = 0;
-    speechSynthesis.cancel();
-    document.getElementById('home').style.display="block";
+function ResetPictures() {
+    document.getElementById('home').style.display="none";
     document.getElementById('Command_Center').style.display="none";
     document.getElementById('Stage1').style.display="none";
     document.getElementById('Stage2_America').style.display="none";
@@ -52,82 +49,55 @@ function GameOver(){
     document.getElementById('fail_screen').style.display="none";
 }
 
+//Resets everything and sends user back to initial screen
+function GameOver(){
+    progress_counter = 0;
+    speechSynthesis.cancel();
+    ResetPictures();
+    document.getElementById('home').style.display="block";
+
+}
+
 //Sets what to do in France
 function PrepStage2() {
     progress_counter = 1;
-    document.getElementById('home').style.display="none";
+    ResetPictures ();
     document.getElementById('Command_Center').style.display="block";
-    document.getElementById('Stage1').style.display="none";
-    document.getElementById('Stage2_America').style.display="none";
     document.getElementById('Stage2_France').style.display="block";
-    document.getElementById('Stage3_England').style.display="none";
-    document.getElementById('Stage3_Korea').style.display="none";
-    document.getElementById('Stage3_Mexico').style.display="none";
-    document.getElementById('Stage4_2').style.display="none";
-    document.getElementById('Stage4_3').style.display="none";
     TTS(prompt_2);
 }
 
 //Sets what to do in Mexico part 1
 function PrepStage3() {
     progress_counter = 2;
-    document.getElementById('home').style.display="none";
+    ResetPictures();
     document.getElementById('Command_Center').style.display="block";
-    document.getElementById('Stage1').style.display="none";
-    document.getElementById('Stage2_America').style.display="none";
-    document.getElementById('Stage2_France').style.display="none";
-    document.getElementById('Stage3_England').style.display="none";
-    document.getElementById('Stage3_Korea').style.display="none";
     document.getElementById('Stage3_Mexico').style.display="block";
-    document.getElementById('Stage4_2').style.display="none";
-    document.getElementById('Stage4_3').style.display="none";
     TTS(prompt_3);
 }
 
 //Sets what to do in Mexico part 2
 function PrepStage4() {
     progress_counter = 3;
-    document.getElementById('home').style.display="none";
+    ResetPictures();
     document.getElementById('Command_Center').style.display="block";
-    document.getElementById('Stage1').style.display="none";
-    document.getElementById('Stage2_America').style.display="none";
-    document.getElementById('Stage2_France').style.display="none";
-    document.getElementById('Stage3_England').style.display="none";
-    document.getElementById('Stage3_Korea').style.display="none";
-    document.getElementById('Stage3_Mexico').style.display="none";
     document.getElementById('Stage4_2').style.display="block";
-    document.getElementById('Stage4_3').style.display="none";
     TTS(prompt_4);
 }
 
 //Sets what to do in Mexico part 2
 function PrepStage5() {
     progress_counter = 4;
-    document.getElementById('home').style.display="none";
+    ResetPictures();
     document.getElementById('Command_Center').style.display="block";
-    document.getElementById('Stage1').style.display="none";
-    document.getElementById('Stage2_America').style.display="none";
-    document.getElementById('Stage2_France').style.display="none";
-    document.getElementById('Stage3_England').style.display="none";
-    document.getElementById('Stage3_Korea').style.display="none";
-    document.getElementById('Stage3_Mexico').style.display="none";
-    document.getElementById('Stage4_2').style.display="none";
     document.getElementById('Stage4_3').style.display="block";
     TTS(prompt_5);
 }
 
 //Sets what to do in America on fail
 function PrepFailAmerica() {
-    document.getElementById('home').style.display="none";
-    document.getElementById('Command_Center').style.display="none";
-    document.getElementById('Stage1').style.display="none";
+    ResetPictures();
     document.getElementById('Stage2_America').style.display="block";
-    document.getElementById('Stage2_France').style.display="none";
-    document.getElementById('Stage3_England').style.display="none";
-    document.getElementById('Stage3_Korea').style.display="none";
-    document.getElementById('Stage3_Mexico').style.display="none";
-    document.getElementById('Stage4_2').style.display="none";
-    document.getElementById('Stage4_3').style.display="none";
     document.getElementById('fail_screen').style.display="block";
     TTS(prompt_2_fail);
 }
@@ -136,16 +106,8 @@ function PrepFailAmerica() {
 //Sets what to do in UK on fail
 function PrepFailUK() {
     progress_counter = 6;
-    document.getElementById('home').style.display="none";
-    document.getElementById('Command_Center').style.display="none";
-    document.getElementById('Stage1').style.display="none";
-    document.getElementById('Stage2_America').style.display="none";
-    document.getElementById('Stage2_France').style.display="none";
+    ResetPictures ();
     document.getElementById('Stage3_England').style.display="block";
-    document.getElementById('Stage3_Korea').style.display="none";
-    document.getElementById('Stage3_Mexico').style.display="none";
-    document.getElementById('Stage4_2').style.display="none";
-    document.getElementById('Stage4_3').style.display="none";
     document.getElementById('fail_screen').style.display="block";
     TTS(prompt_3_fail_uk);
 }
@@ -153,16 +115,8 @@ function PrepFailUK() {
 //Sets what to do in Korea on fail
 function PrepFailKorea() {
     progress_counter = 7;
-    document.getElementById('home').style.display="none";
-    document.getElementById('Command_Center').style.display="none";
-    document.getElementById('Stage1').style.display="none";
-    document.getElementById('Stage2_America').style.display="none";
-    document.getElementById('Stage2_France').style.display="none";
-    document.getElementById('Stage3_England').style.display="none";
+    ResetPictures();
     document.getElementById('Stage3_Korea').style.display="block";
-    document.getElementById('Stage3_Mexico').style.display="none";
-    document.getElementById('Stage4_2').style.display="none";
-    document.getElementById('Stage4_3').style.display="none";
     document.getElementById('fail_screen').style.display="block";
     TTS(prompt_3_fail_korea);
 }
@@ -222,10 +176,13 @@ function SpeakNow() {
 }
 //handles response - provides interim results and sends final result to "JudgeSpeech" upon completion
 function disp(event) {
+    var interim_transcript = '';
     var results = event.results;
+    document.getElementById('speech_output').style.color = "white";
     for (var i = event.resultIndex; i < results.length; ++i) {
         if (results[i].isFinal) {
             JudgeSpeech(results[i][0].transcript);
+            document.getElementById('speech_output').style.color = "red";
         } else {
             interim_transcript +=event.results[i][0].transcript;
             document.getElementById('speech_output').innerHTML = interim_transcript;

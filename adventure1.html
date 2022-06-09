@@ -6,7 +6,7 @@
 <body>
     <div id="home" class="start" style="display:block">
         <h1>Catch the Thief!</h1>
-        <h2>A speaking adventrue game!</h2>
+        <h2>A speaking adventure game!</h2>
         <br>
         <h3>A thief has stolen Date Masamune's armor from the Sendai Musuem! She is planning to sell it in a foreing country. The police almost caught her, but she got away!</h3>
         <br>
@@ -16,48 +16,62 @@
 
     </div>
     <div id="Stage1" class="stage" style="display:none">
-        <img src="study.jpg">
+        <h2>The thief's apartment</h2>
+        <img src="study.jpg" style="margin-bottom: 20px">
     </div>
     <div id="Stage2_America" class="stage" style="display:none">
-        <img src="america.jpg" width="100%">
+        <h2>America</h2>
+        <img src="america.jpg" style="margin-bottom: 20px">
     </div>
     <div id="Stage2_France" class="stage" style="display:none">
-        <img src="france.jpg" width="100%">
+        <h2>France</h2>
+        <img src="france.jpg" style="margin-bottom: 20px">
     </div>
     <div id="Stage3_England" class="stage" style="display:none">
-        <img src="uk.jpg">
+        <h2>England</h2>
+        <img src="uk.jpg" style="margin-bottom: 20px">
     </div>
     <div id="Stage3_Korea" class="stage" style="display:none">
-        <img src="korea.jpg">
+        <h2>Korea</h2>
+        <img src="korea.jpg" style="margin-bottom: 20px">
     </div>
     <div id="Stage3_Mexico" class="stage" style="display:none">
-        <img src="mexico.jpg">
+        <h2>Mexico</h2>
+        <img src="mexico.jpg" style="margin-bottom: 20px">
     </div>
     <div id="Stage4_2" class="stage" style="display:none">
-        <img src="4_2.jpg">
+        <h2>Follow the thief!</h2>
+        <img src="4_2.jpg" style="margin-bottom: 20px">
     </div>
     <div id="Stage4_3" class="stage" style="display:none">
-        <img src="4_3.jpg">
+        <h2>Which way did she go?</h2>
+        <img src="4_3.jpg" style="margin-bottom: 20px">
     </div>
     <div id="fail_screen" class="fail" style="display:none">
         <h1>Mission Failed!</h1>
         <button id="Start_Over" class="SO_button" onclick="GameOver()">Start Over!</button>
     </div>
     <div id="Command_Center" class="command_center" style="display:none">
-        <h3>Your command:</h3>
-        <p id="speech_output">Temporary speech</p>
-        <br>           
-        <img id="police" src="police.jpg">
-        <button id="recheck" class="cmd_button" onclick="ReListen()">Explain it Again</button>
-        <button id="help" class="cmd_button" onclick="GetHelp()">Get Advice</button>
-        <button id="command" class="cmd_button" onclick="MakeCommand()">Look for Clues</button>
-        <button id="decision" class="cmd_button" onclick="MakeDecision()">Decide Next Location</button>
-        <br>
-        <label for="select_ln" >Choose Language</label>
+        <label for="select_ln" style="color: white" >Choose Language</label>
         <select id="select_ln" onchange="ChooseLanguage()">
             <option value='en-US'>American English</option>
             <option value='en-GB'>British English</option>
         </select>
+        <br>
+        <br>
+        <h3 style="color: white">Your command:</h3>
+        <p id="speech_output" style="color: white">Temporary speech</p>
+        <br>           
+        <img id="police" class ="police" src="police.jpg">
+        <div class="real_buttons">
+        <button id="recheck" class="cmd_button" onclick="ReListen()">Explain it Again</button>
+        <button id="help" class="cmd_button" onclick="GetHelp()">Get Advice</button>
+        <br>
+        <button id="command" class="cmd_button" onclick="MakeCommand()">Look for Clues</button>
+        <button id="decision" class="cmd_button" onclick="MakeDecision()">Decide Next Location</button>
+        </div>
+        <br>
+
     </div>
 <script type="text/javascript" src="adventure1.js"></script>
 </body>
