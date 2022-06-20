@@ -8,49 +8,52 @@
         <h1>Catch the Thief!</h1>
         <h2>A speaking adventure game!</h2>
         <br>
-        <h3>A thief has stolen Date Masamune's armor from the Sendai Musuem! She is planning to sell it in a foreing country. The police almost caught her, but she got away!</h3>
+        <h3>A thief has stolen Date Masamune's armor from the Sendai Musuem! She is planning to sell it in a foreign country. The police almost caught her, but she got away!</h3>
         <br>
-        <h2> Help the police with their investigation!</h2>
+        <h2> Go to the first foreign country the thief visited and help the police with their investigation!</h2>
         <br>
         <button id="start_button" class="start_button" onclick="StartGame()">Start!</button>
 
     </div>
-    <div id="Stage1" class="stage" style="display:none">
-        <h2>The thief's apartment</h2>
-        <img src="study.jpg" style="margin-bottom: 20px">
+    <div id="England" class="stage" style="display:none">
+        <h2>England</h2>
+        <img src="england.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="Stage2_America" class="stage" style="display:none">
-        <h2>America</h2>
-        <img src="america.jpg" style="margin-bottom: 20px">
+    <div id="Mexico" class="stage" style="display:none">
+        <h2>Mexico</h2>
+        <img src="mexico.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="Stage2_France" class="stage" style="display:none">
+    <div id="France" class="stage" style="display:none">
         <h2>France</h2>
         <img src="france.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="Stage3_England" class="stage" style="display:none">
-        <h2>England</h2>
-        <img src="uk.jpg" style="margin-bottom: 20px">
-    </div>
-    <div id="Stage3_Korea" class="stage" style="display:none">
+    <div id="Korea" class="stage" style="display:none">
         <h2>Korea</h2>
         <img src="korea.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="Stage3_Mexico" class="stage" style="display:none">
-        <h2>Mexico</h2>
-        <div class="really">
-        <div id="container1"><img src="mexico.jpg" class="M1" style="margin-bottom: 20px">
-        <div id="container2"><img id="thief" class = "thief1" src="thief.jpg" style="display:none"></div></div></div>
-        <br>
+    <div id="America" class="stage" style="display:none">
+        <h2>America</h2>
+        <img src="america.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="Stage4_2" class="stage" style="display:none">
-        <h2>Follow the thief!</h2>
-        <div id="container1"><img src="4_2.jpg" style="margin-bottom: 20px">
-        <div id="container3"><img id="thief2" class = "thief1" src="thief.jpg" style="display:none"></div></div>
+    <div id="Brazil" class="stage" style="display:none">
+        <h2>Brazil</h2>
+        <img src="brazil.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="Stage4_3" class="stage" style="display:none">
-        <h2>Which way did she go?</h2>
-        <div id="container1"><img src="4_3.jpg" style="margin-bottom: 20px">
-        <div id="container4"><img id="thief3" src="thief.jpg" class = "thief1" style="display:none"></div></div>
+    <div id="Australia" class="stage" style="display:none">
+        <h2>Australia</h2>
+        <img src="australia.jpg" style="margin-bottom: 20px">
+    </div>
+    <div id="India" class="stage" style="display:none">
+        <h2>India</h2>
+        <img src="india.jpg" style="margin-bottom: 20px">
+    </div>
+    <div id="Egypt" class="stage" style="display:none">
+        <h2>Egypt</h2>
+        <img src="egypt.jpg" style="margin-bottom: 20px">
+    </div>
+    <div id="Italy" class="stage" style="display:none">
+        <h2>Italy</h2>
+        <img src="italy.jpg" style="margin-bottom: 20px">
     </div>
     <div id="fail_screen" class="fail" style="display:none">
         <h1>Mission Failed!</h1>
@@ -76,11 +79,9 @@
         <h3 style="color: white">Your command:</h3>
         <p id="speech_output" style="color: white">Temporary speech</p>
         <br>           
-        <img id="police" class ="police" src="police.jpg">
         <div class="real_buttons">
         <button id="recheck" class="cmd_button" onclick="ReListen()">Explain it Again</button>
         <button id="help" class="cmd_button" onclick="GetHelp()">Get Advice</button>
-        <br>
         <button id="command" class="cmd_button" onclick="MakeCommand()">Look for Clues</button>
         <button id="decision" class="cmd_button" onclick="MakeDecision()">Decide Next Location</button>
         </div>
