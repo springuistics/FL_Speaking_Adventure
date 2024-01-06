@@ -2,9 +2,10 @@
 <head>
     <meta charset="UTF-8">
     <link href="adventure1.css" rel="stylesheet" type="text/css">
+    <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet">
 </head>
 <body>
-    <div id="home" class="start" style="display:block">
+    <div id="home" class="start w3-container" style="display:block">
         <h1>Catch the Thief!</h1>
         <h2>A speaking adventure game!</h2>
         <br>
@@ -12,78 +13,78 @@
         <br>
         <h2> Go to the first foreign country the thief visited and help the police with their investigation!</h2>
         <br>
-        <button id="start_button" class="start_button" onclick="StartGame()">Start!</button>
+        <button id="start_button" class="w3-button w3-green w3-round-xlarge" style="margin-bottom: 10px;" onclick="StartGame()">Start!</button>
 
     </div>
-    <div id="England" class="stage" style="display:none">
+    <div id="England" class="stage w3-container" style="display:none">
         <h2>England</h2>
         <img src="england.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="Mexico" class="stage" style="display:none">
+    <div id="Mexico" class="stage w3-container" style="display:none">
         <h2>Mexico</h2>
         <img src="mexico.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="France" class="stage" style="display:none">
+    <div id="France" class="stage w3-container" style="display:none">
         <h2>France</h2>
         <img src="france.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="Korea" class="stage" style="display:none">
+    <div id="Korea" class="stage w3-container" style="display:none">
         <h2>Korea</h2>
         <img src="korea.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="America" class="stage" style="display:none">
+    <div id="America" class="stage w3-container" style="display:none">
         <h2>America</h2>
         <img src="america.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="Brazil" class="stage" style="display:none">
+    <div id="Brazil" class="stage w3-container" style="display:none">
         <h2>Brazil</h2>
         <img src="brazil.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="Australia" class="stage" style="display:none">
+    <div id="Australia" class="stage w3-container" style="display:none">
         <h2>Australia</h2>
         <img src="australia.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="India" class="stage" style="display:none">
+    <div id="India" class="stage w3-container" style="display:none">
         <h2>India</h2>
         <img src="india.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="Egypt" class="stage" style="display:none">
+    <div id="Egypt" class="stage w3-container" style="display:none">
         <h2>Egypt</h2>
         <img src="egypt.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="Italy" class="stage" style="display:none">
+    <div id="Italy" class="stage w3-container" style="display:none">
         <h2>Italy</h2>
         <img src="italy.jpg" style="margin-bottom: 20px">
     </div>
-    <div id="fail_screen" class="fail" style="display:none">
+    <div id="fail_screen" class="fail w3-container" style="display:none">
         <h1>Mission Failed!</h1>
-        <button id="Start_Over" class="SO_button" onclick="GameOver()">Start Over!</button>
+        <button id="Start_Over" class="w3-button w3-red w3-round-xlarge" onclick="GameOver()">Start Over!</button>
     </div>
-    <div id="success_screen" class="stage" style="display:none">
+    <div id="success_screen" class="stage w3-container" style="display:none">
         <h1>You win!</h1>
         <br>
         <img src="caught.jpg" style="margin-bottom: 20px">
         <br>
         <h2>Congratulations on catching the thief!</h2>
         <br>
-        <button class="SO_button" onclick="GameOver()">Play again!</button>
+        <button class="w3-button w3-green w3-round-xlarge" onclick="GameOver()">Play again!</button>
     </div>
-    <div id="Command_Center" class="command_center" style="display:none">
-        <label for="select_ln" style="color: white" >Choose Language</label>
-        <select id="select_ln" onchange="ChooseLanguage()">
-            <option value='en-US'>American English</option>
-            <option value='en-GB'>British English</option>
-        </select>
-        <br>
-        <br>
+    <div id="Command_Center" class="w3-container w3-blue w3-center" style="display:none">
+        <div class="w3-container w3-center">
+            <label for="voices">Choose Computer Voice:</label>
+            <select id="voices" class="lSelect" onchange="selectVoice()">
+            </select>
+            <label for="speedRNG">Change Speed</label>
+            <input type="range" min="0.5" max="2" value="1" step="0.1" id="speedRNG" onchange="selectSpeed()">
+            <p id="speedCurrent" style="display: inline-block">  1.0</p>
+        </div>
         <h3 style="color: white">Your command:</h3>
-        <p id="speech_output" style="color: white">Temporary speech</p>
-        <br>           
-        <div class="real_buttons">
-        <button id="recheck" class="cmd_button" onclick="ReListen()">Explain it Again</button>
-        <button id="help" class="cmd_button" onclick="GetHelp()">Get Advice</button>
-        <button id="command" class="cmd_button" onclick="MakeCommand()">Look for Clues</button>
-        <button id="decision" class="cmd_button" onclick="MakeDecision()">Decide Next Location</button>
+        <p id="speech_output" style="color: white">Temporary speech</p>           
+        <div class="w3-bar w3-center" style="margin-bottom: 10px;">
+            <button id="recheck" class="w3-button w3-black w3-round-xlarge" onclick="ReListen()">Explain it Again</button>
+            <button id="help" class="w3-button w3-purple w3-round-xlarge" onclick="GetHelp()">Get Advice</button>
+            <button id="command" class="w3-button w3-red w3-round-xlarge" onclick="MakeCommand()">Look for Clues</button>
+            <button id="decision" class="w3-button w3-green w3-round-xlarge" onclick="MakeDecision()">Decide Next Location</button>
         </div>
         <br>
 

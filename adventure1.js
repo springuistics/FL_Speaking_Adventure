@@ -150,7 +150,20 @@ var correct_next = 0;
 var incorrect1 = 0;
 var incorrect2 = 0;
 var prompt1 = "";
+var speed = 1.0;
+var languageVoice = '';
+let voices = []
+const options = document.getElementById('voices');
+const hasSynth = 'speechSynthesis' in window
+if (hasSynth) {
+  voices = speechSynthesis.getVoices()
+  
+  speechSynthesis.addEventListener('voiceschanged', () => {
+    voices = speechSynthesis.getVoices()
+  })
+}
 
+setTimeout(GetVoices, 1000);
 
 //Boolean that determines whether something is a direction to a new location or a search for clues.
 var clues = true;
@@ -278,6 +291,8 @@ async function TTS1(utterance) {
     speechSynthesis.cancel();
     let utter = new SpeechSynthesisUtterance();
     utter.lang=language_var;
+    utter.voice = voices.find(voice=> voice.name === options.value);
+    utter.rate = speed;
     utter.text = utterance;
     window.speechSynthesis.speak(utter);
 }
@@ -287,6 +302,8 @@ async function TTS2(utterance) {
     speechSynthesis.cancel();
     let utter = new SpeechSynthesisUtterance();
     utter.lang=language_var;
+    utter.voice = voices.find(voice=> voice.name === options.value);
+    utter.rate = speed;
     utter.text = utterance;
     window.speechSynthesis.speak(utter);
 }
@@ -295,6 +312,8 @@ function TTS(utterance) {
     speechSynthesis.cancel();
     let utter = new SpeechSynthesisUtterance();
     utter.lang=language_var;
+    utter.voice = voices.find(voice=> voice.name === options.value);
+    utter.rate = speed;
     utter.text = utterance;
     window.speechSynthesis.speak(utter);
 }
@@ -395,11 +414,40 @@ function MakeDecision () {
     SpeakNow();
 }
 
-function ChooseLanguage() {
-    language_var = document.getElementById('select_ln').value;
-}
-
 function Success(){
     ResetPictures();
     document.getElementById('success_screen').style.display="block";
 }
+
+
+//Handles voice options - I usually use it with a timeout; if this is called TOO early, it will be called before the voices load and then it will be blank.
+function GetVoices(){
+    const initOpt = document.createElement('option')
+    if (!voices.length && hasSynth) {
+    voices = speechSynthesis.getVoices()
+    }
+    initOpt.append(document.createTextNode('-- select voice --'))
+    options.append(initOpt)
+    voices.forEach(voice => {
+    const option = document.createElement('option')
+    option.value = voice.name;
+    if (voice.lang.includes('en')) {
+            var forkids = '';
+            if(voice.lang = "en-GB"){
+                forkids = "British English"
+            } if (voice.lang = "en-US") {
+                forkids = "American English"
+            } else {forkids = voice.lang}
+            option.append(document.createTextNode(`${forkids} : ${voice.name}`))
+            options.append(option)
+        }
+    })
+    options.style.display = 'inline';
+  }
+
+
+  
+  function selectSpeed(){
+    speed = document.getElementById('speedRNG').value;
+    document.getElementById('speedCurrent').innerHTML = speed;
+  }
